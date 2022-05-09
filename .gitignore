@@ -1,4 +1,4 @@
 dotnet-core/BookStore/WebApi/bin
 dotnet-core/BookStore/WebApi/obj
-dotnet-core/BookStore/WebApi/.vscode/*
+dotnet-core/**/.vscode/*
 

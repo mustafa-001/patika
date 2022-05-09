@@ -39,12 +39,12 @@ namespace WebApi.Controllers
 
         };
 
-         [HttpGet]
-         public List<Book> GetBooks()
-         {
-             var  bookList = BookList.OrderBy(x=> x.Id).ToList<Book>();
-             return bookList;
-         }
+        [HttpGet]
+        public List<Book> GetBooks()
+        {
+            var bookList = BookList.OrderBy(x => x.Id).ToList<Book>();
+            return bookList;
+        }
 
         [HttpGet("{id}")]
         public Book GetById(int id)
@@ -57,6 +57,29 @@ namespace WebApi.Controllers
         // {
         //     return BookList.Where(book => book.Id == Convert.ToInt32(id)).SingleOrDefault();
         // }
+        [HttpPost]
+        public IActionResult AddBook([FromBody] Book newBook)
+        {
+            var book = BookList.SingleOrDefault(book => book.Title == newBook.Title);
+            if (book is not null)
+            {
+                return BadRequest();
+            }
+            BookList.Add(newBook);
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateBook(int id, [FromBody] Book updatedBook)
+        {
+            var book = BookList.SingleOrDefault(book => book.Id == id);
+            if (book is null)
+                return BadRequest();
+            book.GenreId = updatedBook.GenreId != default ? updatedBook.GenreId : book.GenreId;
+            book.PageCount = updatedBook.PageCount != default ? updatedBook.PageCount : book.PageCount;
+            book.PublishDate = updatedBook.PublishDate != default ? updatedBook.PublishDate : book.PublishDate;
+            return Ok();
+        }
 
 
     }

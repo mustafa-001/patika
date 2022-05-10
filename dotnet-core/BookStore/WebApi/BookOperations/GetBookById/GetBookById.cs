@@ -14,16 +14,16 @@ namespace WebApi.BookOperations.GetBookById
         private readonly BookStoreDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly int _id;
-        public GetBookByIdQuery(BookStoreDbContext dbContext, IMapper mapper, int id)
+        public int BookId;
+        public GetBookByIdQuery(BookStoreDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            _id = id;
         }
 
         public GetBookByIdModel Handle()
         {
-            var book = _dbContext.Books.SingleOrDefault(x => x.Id == _id);
+            var book = _dbContext.Books.SingleOrDefault(x => x.Id == BookId);
             if (book is null)
                 throw new InvalidOperationException("Book Does Not Exist");
             return _mapper.Map<GetBookByIdModel>(book);

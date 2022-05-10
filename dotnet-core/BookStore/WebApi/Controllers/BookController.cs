@@ -38,9 +38,12 @@ namespace WebApi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            GetBookByIdQuery query = new GetBookByIdQuery(_context, _mapper, id);
+            GetBookByIdQuery query = new GetBookByIdQuery(_context, _mapper);
+            GetBookByIdQueryValidator validator = new GetBookByIdQueryValidator();
+            query.BookId = id;
             try
             {
+                validator.ValidateAndThrow(query);
                 return Ok(query.Handle());
             }
             catch (Exception ex)
@@ -80,6 +83,8 @@ namespace WebApi.Controllers
             try
             {
                 command.Model = updatedBook;
+                UpdateBookCommandValidator validator = new UpdateBookCommandValidator();
+                validator.ValidateAndThrow(command);
                 command.Handle();
             }
             catch (Exception ex)

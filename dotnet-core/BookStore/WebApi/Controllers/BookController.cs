@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApi.DBOperations;
+using WebApi.BookOperations.GetBooks;
+using WebApi.BookOperations.CreateBook;
 
 namespace WebApi.Controllers
 {
@@ -14,16 +16,16 @@ namespace WebApi.Controllers
     {
         private readonly BookStoreDbContext _context;
 
-        public BookStoreController( BookStoreDbContext context)
+        public BookStoreController(BookStoreDbContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public List<Book> GetBooks()
+        public List<BooksViewModel> GetBooks()
         {
-            var bookList = _context.Books.OrderBy(x => x.Id).ToList<Book>();
-            return bookList;
+            GetBooksQuery query = new GetBooksQuery(_context);
+            return query.Handle();
         }
 
         [HttpGet("{id}")]
@@ -38,15 +40,25 @@ namespace WebApi.Controllers
         //     return _context.Books.Where(book => book.Id == Convert.ToInt32(id)).SingleOrDefault();
         // }
         [HttpPost]
-        public IActionResult AddBook([FromBody] Book newBook)
+        public IActionResult AddBook([FromBody] CreateBookModel newBook)
         {
-            var book = _context.Books.SingleOrDefault(book => book.Title == newBook.Title);
-            if (book is not null)
+            var command = new CreateBookCommand(_context);
+            try
             {
-                return BadRequest();
+                command.Model = newBook;
+                command.Handle();
             }
-            _context.Books.Add(newBook);
-            _context.SaveChanges();
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            // if (book is not null)
+            // {
+            //     return BadRequest();
+            // }
+            // _context.Books.Add(newBook);
+            // _context.SaveChanges();
             return Ok();
         }
 

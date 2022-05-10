@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using AutoMapper;
 using WebApi.DBOperations;
 using WebApi.BookOperations.GetBooks;
 using WebApi.BookOperations.CreateBook;
@@ -18,23 +19,25 @@ namespace WebApi.Controllers
     public class BookStoreController : ControllerBase
     {
         private readonly BookStoreDbContext _context;
+        private readonly IMapper _mapper;
 
-        public BookStoreController(BookStoreDbContext context)
+        public BookStoreController(BookStoreDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public List<BooksViewModel> GetBooks()
         {
-            GetBooksQuery query = new GetBooksQuery(_context);
+            GetBooksQuery query = new GetBooksQuery(_context, _mapper);
             return query.Handle();
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            GetBookByIdQuery query = new GetBookByIdQuery(_context, id);
+            GetBookByIdQuery query = new GetBookByIdQuery(_context, _mapper, id);
             try
             {
                 return Ok(query.Handle());
@@ -54,7 +57,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public IActionResult AddBook([FromBody] CreateBookModel newBook)
         {
-            var command = new CreateBookCommand(_context);
+            var command = new CreateBookCommand(_context, _mapper);
             try
             {
                 command.Model = newBook;

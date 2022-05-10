@@ -79,7 +79,7 @@ namespace WebApi.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateBook(int id, [FromBody] UpdateBookModel updatedBook)
         {
-            var command = new UpdateBookCommand(_context);
+            var command = new UpdateBookCommand(_context, _mapper);
             try
             {
                 command.Model = updatedBook;

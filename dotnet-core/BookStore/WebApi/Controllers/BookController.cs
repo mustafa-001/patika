@@ -7,6 +7,8 @@ using Microsoft.Extensions.Logging;
 using WebApi.DBOperations;
 using WebApi.BookOperations.GetBooks;
 using WebApi.BookOperations.CreateBook;
+using WebApi.BookOperations.UpdateBook;
+using WebApi.BookOperations.GetBookById;
 
 namespace WebApi.Controllers
 {
@@ -29,9 +31,10 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public Book GetById(int id)
+        public GetBookByIdModel GetById(int id)
         {
-            return _context.Books.Where(x => x.Id == id).SingleOrDefault();
+            GetBookByIdQuery query = new GetBookByIdQuery(_context, id);
+            return query.Handle();
         }
 
         // [HttpGet]
@@ -52,26 +55,22 @@ namespace WebApi.Controllers
             {
                 return BadRequest(ex.Message);
             }
-
-            // if (book is not null)
-            // {
-            //     return BadRequest();
-            // }
-            // _context.Books.Add(newBook);
-            // _context.SaveChanges();
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateBook(int id, [FromBody] Book updatedBook)
+        public IActionResult UpdateBook(int id, [FromBody] UpdateBookModel updatedBook)
         {
-            var book = _context.Books.SingleOrDefault(book => book.Id == id);
-            if (book is null)
-                return BadRequest();
-            book.GenreId = updatedBook.GenreId != default ? updatedBook.GenreId : book.GenreId;
-            book.PageCount = updatedBook.PageCount != default ? updatedBook.PageCount : book.PageCount;
-            book.PublishDate = updatedBook.PublishDate != default ? updatedBook.PublishDate : book.PublishDate;
-            _context.SaveChanges();
+            var command = new UpdateBookCommand(_context);
+            try
+            {
+                command.Model = updatedBook;
+                command.Handle();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
             return Ok();
         }
 

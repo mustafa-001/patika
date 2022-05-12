@@ -23,8 +23,8 @@ namespace WebApi.DBOperations
                     new Author
                     {
                         Name = "J.R.R. Tolkien",
-                        BirthDate = new DateTime(1940, 1,1),
-                    }, 
+                        BirthDate = new DateTime(1940, 1, 1),
+                    },
                     new Author
                     {
                         Name = "Mary Shelby",
@@ -39,13 +39,13 @@ namespace WebApi.DBOperations
 
 
                 context.Genres.AddRange(
-                    new Genre 
+                    new Genre
                     {
                         Name = "Personal Growth"
                     },
                     new Genre
                     {
-                        Name = "Science Fiction" 
+                        Name = "Science Fiction"
                     },
                     new Genre
                     {

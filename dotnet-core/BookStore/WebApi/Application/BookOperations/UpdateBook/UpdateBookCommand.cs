@@ -10,9 +10,9 @@ namespace WebApi.BookOperations.UpdateBook
     public class UpdateBookCommand
     {
         public UpdateBookModel Model { get; set; }
-        private readonly BookStoreDbContext _dbContext;
+        private readonly IBookStoreDbContext _dbContext;
         private readonly IMapper _mapper;
-        public UpdateBookCommand(BookStoreDbContext dbContext, IMapper mapper)
+        public UpdateBookCommand(IBookStoreDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;

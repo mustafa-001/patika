@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using WebApi.Entities;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace WebApi.DBOperations
@@ -12,6 +13,21 @@ namespace WebApi.DBOperations
             using (var context = new BookStoreDbContext(
                 serviceProvider.GetRequiredService<DbContextOptions<BookStoreDbContext>>()))
             {
+
+                context.Genres.AddRange(
+                    new Genre 
+                    {
+                        Name = "Personal Growth"
+                    },
+                    new Genre
+                    {
+                        Name = "Science Fiction" 
+                    },
+                    new Genre
+                    {
+                        Name = "Novel"
+                    }
+                );
 
                 if (context.Books.Any())
                 {

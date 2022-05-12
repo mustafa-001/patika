@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using WebApi.DBOperations;
-using WebApi.Common;
 
 namespace WebApi.BookOperations.GetBookById
 {

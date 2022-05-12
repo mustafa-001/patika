@@ -19,6 +19,23 @@ namespace WebApi.DBOperations
                     return;
                 }
 
+                context.Authors.AddRange(
+                    new Author
+                    {
+                        Name = "J.R.R. Tolkien",
+                        BirthDate = new DateTime(1940, 1,1),
+                    }, 
+                    new Author
+                    {
+                        Name = "Mary Shelby",
+                        BirthDate = new DateTime(1800, 1, 1)
+                    },
+                    new Author
+                    {
+                        Name = "Frank Herbert",
+                        BirthDate = new DateTime(1800, 1, 1)
+                    }
+                );
 
 
                 context.Genres.AddRange(
@@ -40,8 +57,9 @@ namespace WebApi.DBOperations
                     new Book
                     {
                         Id = 1,
-                        Title = "Lean Startup",
+                        Title = "LOTR",
                         GenreId = 1, //Personal Growth
+                        AuthorId = 1,
                         PageCount = 200,
                         PublishDate = new DateTime(2001, 12, 1)
                     },
@@ -49,8 +67,9 @@ namespace WebApi.DBOperations
                     new Book
                     {
                         Id = 2,
-                        Title = "Herland",
+                        Title = "Frankenstein",
                         GenreId = 2, //Science Fiction
+                        AuthorId = 2,
                         PageCount = 250,
                         PublishDate = new DateTime(2010, 12, 1)
                     },
@@ -59,6 +78,7 @@ namespace WebApi.DBOperations
                         Id = 3,
                         Title = "Dune",
                         GenreId = 2,
+                        AuthorId = 3,
                         PageCount = 200,
                         PublishDate = new DateTime(2001, 08, 1)
                     }

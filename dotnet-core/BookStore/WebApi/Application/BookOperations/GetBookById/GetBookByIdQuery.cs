@@ -20,7 +20,7 @@ namespace WebApi.BookOperations.GetBookById
 
         public GetBookByIdModel Handle()
         {
-            var book = _dbContext.Books.Include(x => x.Genre).SingleOrDefault(x => x.Id == BookId);
+            var book = _dbContext.Books.Include(x => x.Genre).Include(x=> x.Author).SingleOrDefault(x => x.Id == BookId);
             if (book is null)
                 throw new InvalidOperationException("Book Does Not Exist");
             return _mapper.Map<GetBookByIdModel>(book);
@@ -32,6 +32,7 @@ namespace WebApi.BookOperations.GetBookById
     {
         public string Title { get; set; }
         public string Genre { get; set; }
+        public string Author {get; set;}
         public int PageCount { get; set; }
         public string PublishDate { get; set; }
 

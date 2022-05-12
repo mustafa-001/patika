@@ -1,10 +1,8 @@
 
 using System;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 using WebApi.DBOperations;
 using AutoMapper;
-using WebApi.Common;
 using WebApi.Entities;
 
 namespace WebApi.BookOperations.CreateBook

@@ -14,6 +14,13 @@ namespace WebApi.DBOperations
                 serviceProvider.GetRequiredService<DbContextOptions<BookStoreDbContext>>()))
             {
 
+                if (context.Books.Any())
+                {
+                    return;
+                }
+
+
+
                 context.Genres.AddRange(
                     new Genre 
                     {
@@ -28,12 +35,6 @@ namespace WebApi.DBOperations
                         Name = "Novel"
                     }
                 );
-
-                if (context.Books.Any())
-                {
-                    return;
-                }
-
 
                 context.Books.AddRange(
                     new Book

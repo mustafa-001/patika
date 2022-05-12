@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using WebApi.DBOperations;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.BookOperations.GetBookById
 {
@@ -22,7 +20,7 @@ namespace WebApi.BookOperations.GetBookById
 
         public GetBookByIdModel Handle()
         {
-            var book = _dbContext.Books.SingleOrDefault(x => x.Id == BookId);
+            var book = _dbContext.Books.Include(x => x.Genre).SingleOrDefault(x => x.Id == BookId);
             if (book is null)
                 throw new InvalidOperationException("Book Does Not Exist");
             return _mapper.Map<GetBookByIdModel>(book);

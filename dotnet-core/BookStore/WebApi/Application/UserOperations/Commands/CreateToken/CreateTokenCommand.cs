@@ -17,10 +17,9 @@ namespace WebApi.Application.UserOperations.Commands.CreateToken
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
 
-        public CreateTokenCommand(IBookStoreDbContext context, IMapper mapper, IConfiguration configuration)
+        public CreateTokenCommand(IBookStoreDbContext context,  IConfiguration configuration)
         {
             _context = context;
-            _mapper = mapper;
             _configuration = configuration;
         }
 

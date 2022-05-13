@@ -9,9 +9,11 @@ using WebApi.BookOperations.UpdateBook;
 using WebApi.BookOperations.GetBookById;
 using WebApi.BookOperations.DeleteBook;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]s")]
     public class BookStoreController : ControllerBase
@@ -24,7 +26,6 @@ namespace WebApi.Controllers
             _context = context;
             _mapper = mapper;
         }
-
         [HttpGet]
         public List<BooksViewModel> GetBooks()
         {

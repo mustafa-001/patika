@@ -1,4 +1,5 @@
 dotnet-core/BookStore/WebApi/bin
 dotnet-core/BookStore/WebApi/obj
 dotnet-core/**/.vscode/*
-
+dotnet-core/BookStore/Tests/WebApi.UnitTests/bin/**
+dotnet-core/BookStore/Tests/WebApi.UnitTests/obj

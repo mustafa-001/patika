@@ -14,9 +14,12 @@ namespace TestSetup
             var options = new DbContextOptionsBuilder<BookStoreDbContext>().UseInMemoryDatabase(databaseName: "BookStoreTestDb").Options;
             Context = new BookStoreDbContext(options);
             Context.Database.EnsureCreated();
+            Context.Database.EnsureDeleted();
             Context.AddBooks();
             Context.AddGenres();
             Context.AddAuthors();
+            Context.SaveChanges();
+
             Mapper = new MapperConfiguration(cfg => {cfg.AddProfile<MappingProfile>(); }).CreateMapper();
         }
 

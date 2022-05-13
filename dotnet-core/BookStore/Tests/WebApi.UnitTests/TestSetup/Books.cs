@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using WebApi.DBOperations;
 using WebApi.Entities;
 
@@ -8,6 +9,11 @@ namespace TestSetup
     {
         public static void AddBooks(this IBookStoreDbContext context)
         {
+            if (context.Books.Any())
+                {
+                    return;
+                }
+
  
                 context.Books.AddRange(
                     new Book

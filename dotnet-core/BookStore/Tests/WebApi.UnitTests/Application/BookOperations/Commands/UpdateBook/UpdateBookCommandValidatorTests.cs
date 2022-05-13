@@ -2,15 +2,15 @@ using System;
 using AutoMapper;
 using FluentAssertions;
 using TestSetup;
-using WebApi.BookOperations.CreateBook;
+using WebApi.BookOperations.UpdateBook;
 using WebApi.DBOperations;
 using WebApi.Entities;
 using Xunit;
 
-namespace Application.BookOperations.Commands.CreateBook
+namespace Application.BookOperations.Commands.UpdateBook
 {
     [Collection("NonParallelTestCollection")]
-    public class CreateBookCommandValidatorTests : IClassFixture<CommonTestFixture>
+    public class UpdateBookCommandValidatorTests : IClassFixture<CommonTestFixture>
     {
         [Theory]
         [InlineData("Lord of The", 0, 0)]
@@ -22,15 +22,15 @@ namespace Application.BookOperations.Commands.CreateBook
         [InlineData("Lor", 0, 0)]
         public void WhenInvalidInputIsGiven_Validator_ShouldReturnErrors(string title, int pagecount, int genre)
         {
-            CreateBookCommand command = new CreateBookCommand(null, null);
-            command.Model = new CreateBookModel()
+            var command = new UpdateBookCommand(null, null);
+            command.Model = new UpdateBookModel()
             {
                 Title = title,
                 PageCount = pagecount,
                 PublishDate = DateTime.Now.Date.AddDays(-1),
                 GenreId = genre
             };
-            var validator = new CreateBookCommandValidator();
+            var validator = new UpdateBookCommandValidator();
             var result = validator.Validate(command);
             result.Errors.Count.Should().BeGreaterThan(0);
         }
@@ -38,29 +38,29 @@ namespace Application.BookOperations.Commands.CreateBook
         [Fact]
         public void WhenDateTimeEqualNowIsGiven_Validator_ShouldThrow()
         {
-            var command = new CreateBookCommand(null, null);
-            command.Model = new CreateBookModel()
+            var command = new UpdateBookCommand(null, null);
+            command.Model = new UpdateBookModel()
             {
-                Title = "LOTR",
-                PageCount = 100,
+                Title = "Lord of The Rings 3",
+                PageCount = 200,
                 PublishDate = DateTime.Now.Date,
-                GenreId = 0
+                GenreId = 1
             };
-            var result = new CreateBookCommandValidator().Validate(command);
+            var result = new UpdateBookCommandValidator().Validate(command);
             result.Errors.Count.Should().BeGreaterThan(0);
         }
         [Fact]
         public void WhenValidInputIsGiven_Validator_ShallNotThrow()
         {
-            var command = new CreateBookCommand(null, null);
-            command.Model = new CreateBookModel()
+            var command = new UpdateBookCommand(null, null);
+            command.Model = new UpdateBookModel()
             {
                 Title = "Lord of the Rings",
-                PageCount = 200,
-                PublishDate = DateTime.Now.Date,
+                PageCount = 300,
+                PublishDate = DateTime.Now.AddDays(-1).Date,
                 GenreId = 1
             };
-            var result = new CreateBookCommandValidator().Validate(command);
+            var result = new UpdateBookCommandValidator().Validate(command);
             result.Errors.Count.Should().Be(0);
         }
 

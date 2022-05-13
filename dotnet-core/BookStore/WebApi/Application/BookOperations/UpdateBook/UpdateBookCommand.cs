@@ -23,12 +23,15 @@ namespace WebApi.BookOperations.UpdateBook
             if (book is null)
                 throw new InvalidOperationException("Book Does Not Exist.");
 
-            book = _mapper.Map<Book>(Model);
+            var newBook = _mapper.Map<Book>(Model);
+            book.PageCount = newBook.PageCount == default ? book.PageCount : newBook.PageCount;
+            book.PublishDate = newBook.PublishDate == default ? book.PublishDate : newBook.PublishDate;
+            book.GenreId = newBook.GenreId == default ? book.GenreId : newBook.GenreId;
+            book.AuthorId = newBook.AuthorId == default ? book.AuthorId : newBook.AuthorId;
 
             _dbContext.SaveChanges();
         }
     }
-
 
 
     public class UpdateBookModel

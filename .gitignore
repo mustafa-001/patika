@@ -3,3 +3,7 @@ dotnet-core/BookStore/WebApi/obj
 dotnet-core/**/.vscode/*
 dotnet-core/BookStore/Tests/WebApi.UnitTests/bin/**
 dotnet-core/BookStore/Tests/WebApi.UnitTests/obj
+dotnet-core/MovieStore/WebApi/obj/
+dotnet-core/MovieStore/WebApi/bin/
+dotnet-core/MovieStore/Tests/WebApi.UnitTests/obj
+dotnet-core/MovieStore/Tests/WebApi.UnitTests/bin

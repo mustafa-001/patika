@@ -27,7 +27,8 @@ namespace WebApi.MovieOperations.GetMovies
     {
         public string Name{get; set;}
         public string Genre {get; set;}
-        public string Director {get; set;}
+        public int DirectorID {get; set;}
+        public List<int> ActorIDs {get; set;}
         public string Date {get; set;}
     }
 }

@@ -75,7 +75,7 @@ namespace WebApi.DBOperations
                         },
                         Director = dbContext.Directors.FirstOrDefault(d => d.Name == "Peter"),
                         Price = 5,
-                        Year = new DateOnly(2001 ,08, 01)
+                        Date = new DateTime(2001 ,08, 01)
                     },
 
                     new Movie
@@ -89,7 +89,7 @@ namespace WebApi.DBOperations
                         },
                         Director = dbContext.Directors.SingleOrDefault(d => d.Name == "Sergio"),
                         Price = 5,
-                        Year = new DateOnly(1966, 12, 08)
+                        Date = new DateTime(1966, 12, 08)
                     }
                 );
                 dbContext.SaveChanges();

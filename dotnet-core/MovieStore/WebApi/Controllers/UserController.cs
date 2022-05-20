@@ -9,6 +9,9 @@ using WebApi.UserOperations.Commands.CreateUser;
 using WebApi.UserOperations.Commands.CreateToken;
 using WebApi.TokenOperations.Models;
 using WebApi.UserOperations.Commands.RefreshToken;
+using Microsoft.AspNetCore.Authorization;
+using WebApi.UserOperations.Commands.BuyMovieCommand;
+using WebApi.UserOperations.Queries.GetBougthMovies;
 
 namespace WebApi.Controllers
 {
@@ -36,6 +39,23 @@ namespace WebApi.Controllers
             return Ok();
         }
 
+        [Authorize]
+        [HttpPost("BuyMovie")]
+        public IActionResult BuyMovie([FromBody] BuyMovieModel model)
+        {
+            var command = new BuyMovieCommand(_context, model);
+            command.Handle();
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpGet("{userId}")]
+        public List<int> GetBougthMovies(string userId)
+        {
+            var query = new GetBougthMovies(_context, userId);
+            return query.Handle();
+        }
+
         [HttpPost("connect/token")]
         public ActionResult<Token> CreateToken([FromBody] CreateTokenModel login)
         {
@@ -44,6 +64,8 @@ namespace WebApi.Controllers
             var token = command.Handle();
             return token;
         }
+
+        [Authorize]
         [HttpGet("refreshToken")]
         public ActionResult<Token> RefreshToken([FromQuery] string token)
         {

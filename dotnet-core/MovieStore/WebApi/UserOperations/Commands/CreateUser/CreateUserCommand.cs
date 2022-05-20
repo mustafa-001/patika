@@ -25,6 +25,7 @@ namespace WebApi.UserOperations.Commands.CreateUser
             var user = _mapper.Map<User>(Model);
 
             _context.Users.Add(user);
+            user.Movies.Add(_context.Movies.First(x=> true));
             _context.SaveChanges();
         }
 

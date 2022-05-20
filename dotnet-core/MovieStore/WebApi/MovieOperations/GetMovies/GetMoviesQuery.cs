@@ -18,7 +18,7 @@ namespace WebApi.MovieOperations.GetMovies
 
         public List<MoviesViewModel> Handle()
         {
-            var movieList = _dbContext.Movies.Include(x=> x.Director).OrderBy(x => x.Id).ToList();
+            var movieList = _dbContext.Movies.Include(x=> x.Director).Include(x=> x.Actors).OrderBy(x => x.Id).ToList();
             return _mapper.Map<List<MoviesViewModel>>(movieList);
         }
     }

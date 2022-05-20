@@ -20,8 +20,10 @@ namespace WebApi.Common
     {
         public MappingProfile()
         {
-            CreateMap<Movie, MoviesViewModel>().ForMember(d => d.DirectorID, opt => opt.MapFrom(src => src.Director != null ? 0 :src.Director!.Id)).ForMember(d => d.ActorIDs, opt => opt.MapFrom(src => src.Actors.Select(x => x.Id))).ForMember(d => d.Date, opt => opt.MapFrom(src => src.Date.ToShortDateString()));
-            CreateMap<Movie, MovieDetailModel>().ForMember(d => d.DirectorID, opt => opt.MapFrom(src => src.Director != null ? 0 : src.Director!.Id)).ForMember(d => d.ActorIDs, opt => opt.MapFrom(src => src.Actors.Select(x => x.Id))).ForMember(d => d.Date, opt => opt.MapFrom(src => src.Date.ToShortDateString()));
+            CreateMap<Movie, MoviesViewModel>().ForMember(d => d.DirectorID, opt => opt.MapFrom(src => src.Director == null ? 0 : src.Director!.Id))
+                .ForMember(d => d.ActorIDs, opt => opt.MapFrom(src => src.Actors.Select(x => x.Id)))
+                .ForMember(d => d.Date, opt => opt.MapFrom(src => src.Date.ToShortDateString()));
+            CreateMap<Movie, MovieDetailModel>().ForMember(d => d.DirectorID, opt => opt.MapFrom(src => src.Director == null ? 0 : src.Director!.Id)).ForMember(d => d.ActorIDs, opt => opt.MapFrom(src => src.Actors.Select(x => x.Id))).ForMember(d => d.Date, opt => opt.MapFrom(src => src.Date.ToShortDateString()));
             CreateMap<CreateMovieModel, Movie>().ForMember(d => d.Actors, opt => opt.Ignore()) //MapFrom(src => src.Actors.Select(x =>x )))
                 .ForMember(d => d.DirectorId, opt => opt.MapFrom(src => src.DirectorId));
             CreateMap<UpdateMovieModel, Movie>();

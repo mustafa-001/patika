@@ -29,9 +29,9 @@ namespace WebApi.DirectorOperations.GetDirectorDetail
 
     public class DirectorDetailModel
     {
-        public string Name{get; set;}
-        public string Surname{get; set;}
-        public List<int> MovieIDs {get; set;}
-        public string BirthDate {get; set;}
+        public string Name{get; set;} =  String.Empty;
+        public string? Surnamee {get; set;}
+        public List<int> MovieIDs {get; set;} = new List<int>();
+        public string? BirthDate {get; set;}
     }
 }

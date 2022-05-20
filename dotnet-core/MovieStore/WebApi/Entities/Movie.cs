@@ -8,7 +8,7 @@ namespace WebApi.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id {get; set;}
-        public string Name {get; set;} = null!;
+        public string Name {get; set;} = String.Empty;
         public DateTime  Date {get; set;}
         public string? Genre {get; set;}
         public int? DirectorId {get; set;}

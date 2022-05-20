@@ -30,11 +30,11 @@ namespace WebApi.TokenOperations
                 signingCredentials: credentials
             );
             tokenModel.AccessToken = new JwtSecurityTokenHandler().WriteToken(securityToken);
-            tokenModel.RefreshToken = CreateAccessToken();
+            tokenModel.RefreshToken = CreateRefreshToken();
             return tokenModel;
         }
 
-        private string CreateAccessToken()
+        private string CreateRefreshToken()
         {
             return Guid.NewGuid().ToString();
         }

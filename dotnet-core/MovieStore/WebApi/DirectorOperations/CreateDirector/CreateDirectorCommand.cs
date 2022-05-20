@@ -31,9 +31,9 @@ namespace WebApi.DirectorOperations.CreateDirector
 
     public class CreateDirectorModel
     {
-        public string Name = String.Empty;
-        public string Surname = String.Empty;
-        public  List<int> MovieIDs = new List<int>();
-        public string BirthDate = String.Empty;
+        public string Name {get; set;} = String.Empty;
+        public string Surname  {get; set;} = String.Empty;
+        public  List<int> MovieIDs  {get; set;} = new List<int>();
+        public string BirthDate {get; set;}  = String.Empty;
     }
 }

@@ -51,7 +51,6 @@ namespace Application.ActorOperations.Commands.DeleteActor
                 Name = "Sth",
                 Surname = "sth",
                 BirthDate = default,
-                Movies = default
             };
             _context.Actors.Add(actor);
             _context.SaveChanges();

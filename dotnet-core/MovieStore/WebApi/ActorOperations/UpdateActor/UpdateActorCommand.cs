@@ -50,8 +50,8 @@ namespace WebApi.ActorOperations.UpdateActor
                 }
             }
             var newActor = _mapper.Map<Actor>(UpdateModel);
-            actor.Name = newActor.Name == default ? actor.Name : newActor.Name;
-            actor.Surname = newActor.Surname == default ? actor.Surname : newActor.Surname;
+            actor.Name = newActor.Name == String.Empty ? actor.Name : newActor.Name;
+            actor.Surname = newActor.Surname == String.Empty ? actor.Surname : newActor.Surname;
             actor.BirthDate = newActor.BirthDate == default ? actor.BirthDate : newActor.BirthDate;
             _dbContext.SaveChanges();
 
@@ -59,9 +59,9 @@ namespace WebApi.ActorOperations.UpdateActor
     }
     public class UpdateActorModel
     {
-        public string Name = String.Empty;
-        public string Surname = String.Empty;
-        public  List<int> MovieIDs = new List<int>();
-        public string BirthDate = String.Empty;
+        public string? Name {get; set;} = String.Empty;
+        public string? Surname {get; set;} = String.Empty;
+        public  List<int> MovieIDs {get; set;} = new List<int>();
+        public string? BirthDate {get; set;} = String.Empty;
     }
 }

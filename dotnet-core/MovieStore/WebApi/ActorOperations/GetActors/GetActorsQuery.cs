@@ -25,9 +25,9 @@ namespace WebApi.ActorOperations.GetActors
 
     public class ActorsViewModel
     {
-        public string Name{get; set;}
-        public string Genre {get; set;}
-        public List<int> MovieIDs {get; set;}
-        public string BirthDate {get; set;}
+        public string Name{get; set;} = String.Empty;
+        public string? Genre {get; set;}
+        public List<int> MovieIDs {get; set;} = new List<int>();
+        public string? BirthDate {get; set;}
     }
 }

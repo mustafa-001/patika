@@ -25,10 +25,10 @@ namespace WebApi.MovieOperations.GetMovies
 
     public class MoviesViewModel
     {
-        public string Name{get; set;}
-        public string Genre {get; set;}
+        public string Name{get; set;}  = String.Empty;
+        public string? Genre {get; set;}
         public int DirectorID {get; set;}
-        public List<int> ActorIDs {get; set;}
-        public string Date {get; set;}
+        public List<int> ActorIDs {get; set;} = new List<int>();
+        public string? Date {get; set;}
     }
 }

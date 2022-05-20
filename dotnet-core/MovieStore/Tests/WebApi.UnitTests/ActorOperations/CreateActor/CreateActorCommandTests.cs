@@ -29,8 +29,6 @@ namespace Application.ActorOperations.Commands.CreateActor
             {
                 Name = "Clint",
                 Surname = "Eastwood",
-                BirthDate = default,
-                Movies = default
             };
 
 
@@ -52,8 +50,6 @@ namespace Application.ActorOperations.Commands.CreateActor
             {
                 Name = "Antonio",
                 Surname = "Casale",
-                BirthDate = default,
-                MovieIDs = default
             };
 
 

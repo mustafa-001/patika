@@ -8,7 +8,7 @@ namespace WebApi.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id {get; set;}
-        public string? Name {get; set;}
+        public string Name {get; set;} = String.Empty;
         public string? Surname {get; set;}
         public DateTime BirthDate {get; set;}
         public virtual ICollection<Movie> Movies {get; set;} = new List<Movie>();

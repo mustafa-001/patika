@@ -70,10 +70,10 @@ namespace WebApi.DBOperations
                         Genre = "Fantasy",
                         Actors = new List<Actor>()
                         {
-                            dbContext.Actors.FirstOrDefault(a => a.Name == "Elijah"),
-                            dbContext.Actors.FirstOrDefault(a => a.Name == "Ian")
+                            dbContext.Actors.First(a => a.Name == "Elijah"),
+                            dbContext.Actors.First(a => a.Name == "Ian")
                         },
-                        Director = dbContext.Directors.FirstOrDefault(d => d.Name == "Peter"),
+                        Director = dbContext.Directors.First(d => d.Name == "Peter"),
                         Price = 5,
                         Date = new DateTime(2001 ,08, 01)
                     },
@@ -84,10 +84,10 @@ namespace WebApi.DBOperations
                         Genre = "Western", //Science Fiction
                         Actors = new List<Actor>()
                         {
-                            dbContext.Actors.FirstOrDefault(a => a.Name == "Clint"),
-                            dbContext.Actors.SingleOrDefault(a => a.Name == "Lee")
+                            dbContext.Actors.First(a => a.Name == "Clint"),
+                            dbContext.Actors.Single(a => a.Name == "Lee")
                         },
-                        Director = dbContext.Directors.SingleOrDefault(d => d.Name == "Sergio"),
+                        Director = dbContext.Directors.Single(d => d.Name == "Sergio"),
                         Price = 5,
                         Date = new DateTime(1966, 12, 08)
                     }

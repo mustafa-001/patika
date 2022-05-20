@@ -1,7 +1,7 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.DBOperations;
-using WebApi.Entities;
 using WebApi.MovieOperations.CreateMovie;
 using WebApi.MovieOperations.DeleteMovie;
 using WebApi.MovieOperations.GetMovieDetail;
@@ -9,7 +9,7 @@ using WebApi.MovieOperations.GetMovies;
 using WebApi.MovieOperations.UpdateMovie;
 
 namespace WebApi.Controllers;
-
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class MoviesController : ControllerBase

@@ -44,9 +44,11 @@ namespace WebApi.MovieOperations.UpdateMovie
                     }
                 }
             }
-            movie.Name = newMovie.Name == String.Empty ? movie.Name : newMovie.Name;
+            //default and String.Empty is not same values when Type is NonNull.
+            //It works same for inputs coming from endpoint but fails on unit tests
+            movie.Name = newMovie.Name == default ? movie.Name : newMovie.Name;
             movie.Date = newMovie.Date == default ? movie.Date : newMovie.Date;
-            movie.Genre = newMovie.Genre == default ? movie.Genre : newMovie.Genre;
+            movie.Genre = newMovie.Genre == String.Empty ? movie.Genre : newMovie.Genre;
             movie.DirectorId  = newMovie.DirectorId == default ? movie.DirectorId : newMovie.DirectorId;
             movie.Price = newMovie.Price == default ? movie.Price : newMovie.Price;
             _dbContext.SaveChanges();
@@ -55,7 +57,7 @@ namespace WebApi.MovieOperations.UpdateMovie
 
     public  class UpdateMovieModel
     {
-        public string Name { get; set; } = String.Empty;
+        public string? Name { get; set; } = String.Empty;
         public string Date { get; set; }  = String.Empty;
         public string Genre { get; set; }  = String.Empty;
         public int DirectorId  { get; set; } = 0;

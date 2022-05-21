@@ -8,3 +8,5 @@ dotnet-core/MovieStore/WebApi/bin/
 dotnet-core/MovieStore/Tests/WebApi.UnitTests/obj
 dotnet-core/MovieStore/Tests/WebApi.UnitTests/bin
 dotnet-core/MovieStore/workspace.code-workspace
+dotnet-core/AirplaneManager/WebApi/bin
+dotnet-core/AirplaneManager/WebApi/obj

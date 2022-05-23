@@ -21,10 +21,18 @@ namespace WebApi.Controllers.FligthController
         }
 
         [HttpGet]
-        public List<FligthViewModel> GetFligths()
+        public List<FligthDetailsViewModel> GetFligths()
         {
             GetFligthsQuery query = new(_dbContext, _mapper);
             return query.Handle();
+        }
+
+        [HttpPost]
+        public IActionResult CreateFligth([FromBody] FligthViewModel input)
+        {
+            var command = new CreateFligthCommand(_dbContext, _mapper, input);
+            command.Handle();
+            return  Ok();
         }
     }
 }

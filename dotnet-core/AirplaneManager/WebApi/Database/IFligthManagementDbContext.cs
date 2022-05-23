@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using WebApi.Entities;
 
 namespace WebApi.Database
@@ -12,5 +13,6 @@ namespace WebApi.Database
         DbSet<Pilot> Pilots  {get; set;}
         DbSet<Plane> Planes {get; set;}
         int SaveChanges();
+        EntityEntry<T> Attach<T>(T entity) where T: class;
     }
 }

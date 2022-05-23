@@ -16,15 +16,25 @@ namespace WebApi.FligthOperations
 
         private readonly IMapper _mapper;
 
-        public List<FligthViewModel> Handle()
+        public List<FligthDetailsViewModel> Handle()
         {
-            return _dbContext.Fligths.Include(x=> x.Pilots).Include(x=> x.Company).Select(f => _mapper.Map<FligthViewModel>(f)).ToList();
+            var fligths =  _dbContext.Fligths
+             .Include(x=> x.Pilots)
+             .Include(x=> x.Plane)
+             .Include(x=> x.Company)
+             .Include(x=> x.DepartureAirfield).Include(x=> x.ArrivalAirfield).OrderBy(x=> x.Id)
+            .ToList();
+            return  _mapper.Map<List<FligthDetailsViewModel>>(fligths);
         }
+    }
+
+    public class FligthDetailsViewModel: FligthViewModel
+    {
+        public int Id { get; set; }
     }
 
     public class FligthViewModel
     {
-        public int Id { get; set; }
         public int PlaneId {get; set;}
         public string Company {get; set;} = null!;
         public List<int> PilotIds {get; set;} = new List<int>();

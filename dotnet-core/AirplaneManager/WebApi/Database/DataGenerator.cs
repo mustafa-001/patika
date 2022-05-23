@@ -31,18 +31,22 @@ namespace WebApi.Database
             );
             dbContext.Pilots.AddRange(
                 new Pilot{
-                }
-            );
-            dbContext.Planes.AddRange(
-                new Plane{
-                    isWorking = true,
-                    Model = null
+                },
+                new Pilot{
+
                 }
             );
             dbContext.PlaneModels.AddRange(
                 new PlaneModel{
                     PilotNumber = 1,
                     PassengerNumber = 2
+                }
+            );
+            dbContext.SaveChanges();
+            dbContext.Planes.AddRange(
+                new Plane{
+                    isWorking = true,
+                    Model = dbContext.PlaneModels.First(x=> true)
                 }
             );
             dbContext.SaveChanges();
@@ -58,8 +62,9 @@ namespace WebApi.Database
                 }
             );
             dbContext.SaveChanges();
-
-
+            dbContext.Fligths.First(x=> true).Pilots.Add(dbContext.Pilots.First(x => x.Id == 1));
+            dbContext.Fligths.First(x=> true).Pilots.Add(dbContext.Pilots.First(x => x.Id == 2));
+            dbContext.SaveChanges();
             }
         }
     }

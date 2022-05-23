@@ -1,11 +1,11 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApi.Entities
 {
     public class Company
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        [Key]
         public string Name {get; set;} = String.Empty;
         public List<Fligth> Fligths {get; set;} = new List<Fligth>();
     }

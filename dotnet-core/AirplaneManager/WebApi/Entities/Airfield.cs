@@ -5,6 +5,6 @@ namespace WebApi.Entities
     public class Airfield
     {
 
-        public string Id { get; set; } = null!;
+        public string Id { get; set; } = String.Empty;
     }
 }

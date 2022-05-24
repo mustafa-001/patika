@@ -1,7 +1,9 @@
 using AutoMapper;
 using WebApi.Entities;
 using WebApi.FligthOperations;
-
+namespace WebApi.Common
+{
+    
 
 public class MappingProfile: Profile
 {
@@ -25,4 +27,5 @@ public class MappingProfile: Profile
         .ForMember((x=> x.Pilots), (opt => opt.MapFrom(src=> src.PilotIds.Select(x=> new Pilot{Id = x}).ToList())));
 
     }
+}
 }

@@ -34,5 +34,19 @@ namespace WebApi.Controllers.FligthController
             command.Handle();
             return  Ok();
         }
+        [HttpPut("{id}")]
+        public IActionResult UpdateFligth([FromBody] FligthViewModel updateModel, int id)
+        {
+            var command = new UpdateFligthCommand(_dbContext, _mapper, updateModel, id);
+            command.Handle();
+            return Ok();
+        }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteFligth(int id)
+        {
+            var command = new DeleteFligthCommand(_dbContext, id);
+            command.Handle();
+            return Ok();
+        }
     }
 }

@@ -36,10 +36,10 @@ namespace WebApi.FligthOperations
     public class FligthViewModel
     {
         public int PlaneId {get; set;}
-        public string Company {get; set;} = null!;
+        public string Company {get; set;} = String.Empty;
         public List<int> PilotIds {get; set;} = new List<int>();
-        public string DepartureAirfield {get; set;} = null!;
-        public string ArrivalAirfield {get; set;} = null!;
+        public string DepartureAirfield {get; set;} = String.Empty!;
+        public string ArrivalAirfield {get; set;} = string.Empty;
         public DateTime DepartureTime {get; set;} 
         public DateTime ArrivalTime {get; set;}
     }

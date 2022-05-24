@@ -8,6 +8,6 @@ namespace WebApi.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public PlaneModel Model { get; set; } = null!;
-        public bool isWorking { get; set; }
+        public bool isWorking { get; set; } = true;
     }
 }

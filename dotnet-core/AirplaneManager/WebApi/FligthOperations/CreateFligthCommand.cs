@@ -28,7 +28,6 @@ namespace WebApi.FligthOperations
             foreach (var pilot in fligth.Pilots )
             {
                 _dbContext.Attach(pilot);
-                
             }
             _dbContext.Attach(fligth);
             _dbContext.Fligths.Add(fligth);

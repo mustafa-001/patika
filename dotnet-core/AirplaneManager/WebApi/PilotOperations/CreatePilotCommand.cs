@@ -8,10 +8,14 @@ namespace WebApi.PilotOperations
     public class CreatePilotCommand
     {
         private readonly IFligthManagementDbContext _dbContext;
+        private readonly IMapper _mapper;
+        private readonly PilotViewModel _model;
 
-        public CreatePilotCommand(IFligthManagementDbContext dbContext )
+        public CreatePilotCommand(IFligthManagementDbContext dbContext, IMapper mapper,   PilotViewModel model)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
+            _model = model;
         }
 
 

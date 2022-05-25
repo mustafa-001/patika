@@ -4,11 +4,11 @@ using WebApi.Database;
 
 namespace WebApi.PlaneModelOperations
 {
-    public class GetCompaniesQuery
+    public class GetPlaneModelsQuery
     {
         private readonly IFligthManagementDbContext _dbContext;
 
-        public GetCompaniesQuery(IFligthManagementDbContext dbContext )
+        public GetPlaneModelsQuery(IFligthManagementDbContext dbContext )
         {
             _dbContext = dbContext;
         }

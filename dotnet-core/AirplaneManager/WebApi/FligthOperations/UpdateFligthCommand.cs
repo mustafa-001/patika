@@ -32,10 +32,11 @@ namespace WebApi.FligthOperations
 
             fligth.ArrivalTime = _model.ArrivalTime == default  ? fligth.ArrivalTime : _model.ArrivalTime;
             fligth.DepartureTime = _model.DepartureTime == default  ? fligth.DepartureTime : _model.DepartureTime;
-            fligth.ArrivalAirfield = _model.ArrivalAirfield == default ? fligth.ArrivalAirfield : _dbContext.Airfields.Find(_model.ArrivalAirfield)!;
-            fligth.DepartureAirfield = _model.DepartureAirfield == default ? fligth.DepartureAirfield : _dbContext.Airfields.Find(_model.DepartureAirfield)!;
+            //`default` of Non-null reference type is still null, it it doesn't even throw NPE.
+            fligth.ArrivalAirfield = _model.ArrivalAirfield == String.Empty ? fligth.ArrivalAirfield :    _dbContext.Airfields.Find(_model.ArrivalAirfield)!;
+            fligth.DepartureAirfield = _model.DepartureAirfield == String.Empty ? fligth.DepartureAirfield : _dbContext.Airfields.Find(_model.DepartureAirfield)!;
             fligth.Plane = _model.PlaneId == default ? fligth.Plane : _dbContext.Planes.Find(_model.PlaneId)!;
-            fligth.Company = _model.Company == default ? fligth.Company : _dbContext.Companies.Find(_model.Company)!;
+            fligth.Company = _model.Company == String.Empty ? fligth.Company : _dbContext.Companies.Find(_model.Company)!;
 
             if ( _model.PilotIds.Count is not 0){
                 fligth.Pilots.Clear();

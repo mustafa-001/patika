@@ -1,6 +1,8 @@
 using AutoMapper;
 using WebApi.Entities;
 using WebApi.FligthOperations;
+using WebApi.PilotOperations;
+
 namespace WebApi.Common
 {
     
